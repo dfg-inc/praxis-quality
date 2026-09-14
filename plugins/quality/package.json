@@ -1,0 +1,19 @@
+{
+  "name": "@praxis/quality",
+  "version": "0.1.0-alpha.21",
+  "private": true,
+  "description": "praxis-quality Claude Code plugin (company Quality role)",
+  "license": "UNLICENSED",
+  "scripts": {
+    "session-bootstrap": "node ./tools/session-bootstrap.mjs",
+    "qa-verify": "node ./tools/qa-verify.mjs",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@praxis/plugin-sdk": "*",
+    "@praxis/jira": "*"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}
