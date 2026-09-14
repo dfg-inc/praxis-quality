@@ -1,9 +1,15 @@
 {
   "name": "praxis-quality",
-  "version": "0.1.0-alpha.21",
+  "version": "0.1.0-alpha.22",
   "description": "Praxis Quality/QA plugin: local verify, coverage, Jira bugs, work-package reports.",
-  "author": { "name": "dfuture-co" },
+  "author": {
+    "name": "dfuture-co"
+  },
   "license": "UNLICENSED",
-  "keywords": ["praxis", "quality", "qa"],
+  "keywords": [
+    "praxis",
+    "quality",
+    "qa"
+  ],
   "defaultEnabled": true
 }

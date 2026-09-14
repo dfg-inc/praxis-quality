@@ -1,13 +1,15 @@
 {
   "name": "praxis",
-  "owner": { "name": "dfuture-co" },
+  "owner": {
+    "name": "dfuture-co"
+  },
   "description": "Internal marketplace entry for praxis-quality (not public Apache).",
   "plugins": [
     {
       "name": "praxis-quality",
       "source": "./",
       "description": "Quality/QA role plugin over quality-service + Jira work packages.",
-      "version": "0.1.0-alpha.21"
+      "version": "0.1.0-alpha.22"
     }
   ]
 }
