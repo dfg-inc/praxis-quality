@@ -1,6 +1,6 @@
 {
   "name": "praxis-quality",
-  "version": "0.1.0-alpha.27",
+  "version": "0.1.0-alpha.28",
   "description": "Praxis Quality — ensure the QA runtime, verify a Work Package, and record Jira results (including localized Bug types).",
   "author": {
     "name": "dfuture-co"
