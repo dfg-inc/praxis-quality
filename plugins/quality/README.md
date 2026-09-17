@@ -1,6 +1,10 @@
 # praxis-quality
 
-Company-internal **QA** Claude Code plugin. **UNLICENSED**. Uses `@praxis/jira` orchestration and `apps/quality-service` for persisted reviews.
+Company-internal **QA** plugin. **UNLICENSED**. Uses `@praxis/jira` orchestration and `apps/quality-service` for persisted reviews.
+
+**Claude UI / Cowork:** import `claude-plugins/praxis-quality.zip`. Call `praxis_quality_ensure` / `praxis_quality_review` via MCP. Do not tell the user to run `make quality-up`.
+
+**Claude Code / CI:** `praxis quality --help` or `make qa`.
 
 Role `qa`, stage `quality`.
 

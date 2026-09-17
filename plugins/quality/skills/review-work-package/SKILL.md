@@ -5,22 +5,21 @@ description: Review a Work Package, ensure Quality runtime, and publish the QA r
 
 # Review Work Package
 
-Do not ask the user to run `make quality-up`.
+Do not ask the user to run `make quality-up`. Use MCP tools.
 
 ## Capability detection
 
-Detect repo. `${CLAUDE_PLUGIN_ROOT}/bin/praxis doctor --json`. If it cannot run: `LOCAL_RUNTIME_UNAVAILABLE`.
-
-If unsure: `praxis quality --help`.
+Call `praxis_doctor`. If it cannot run: `LOCAL_RUNTIME_UNAVAILABLE`. Never paste tokens into chat.
 
 ## Flow
 
-```
-praxis quality ensure --json
-praxis work-package show --wp <WP> --json
-praxis quality review --wp <WP> --json
-```
+1. `praxis_quality_ensure`
+2. `praxis_work_package_show`
+3. Read design/dev evidence
+4. Build/test locally only when local execution is available
+5. Preview Jira writes / findings. STOP. Wait for human approval where writes are required.
+6. `praxis_quality_review` with `confirmation=YES`
 
-Read canonical members and design. Build/test locally. Create a blocking Bug only for a real blocker, using the resolved bug type id (not the display name «Баг»/Bug).
+Create a blocking Bug only for a real blocker, using the resolved numeric bug type id (not the display name «Баг»/Bug). Do not immediately apply after preview.
 
 Examples: «Проверь WP-20260914-002 и дай финальный QA результат.» / “Review WP-20260914-002 and give the QA outcome.”

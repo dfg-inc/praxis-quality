@@ -5,9 +5,6 @@ description: Verify a claimed/ready-for-QA Jira Work Package locally and write a
 
 # Verify work package
 
-```
-praxis quality ensure --json
-praxis quality review --wp <KEY> --json
-```
+Call `praxis_quality_ensure`, read the WP, preview findings, wait for human approval, then `praxis_quality_review` with `confirmation=YES`.
 
-If unsure, `praxis quality --help`. Only execute install/build/test/coverage from `.project` `quality:` keys.
+Only execute install/build/test/coverage from `.project` `quality:` keys, and only when local execution is available. Do not immediately apply after preview.

@@ -5,4 +5,6 @@ description: Resume Quality review for a Work Package.
 
 # Resume QA
 
-`praxis quality ensure --json` then `praxis quality review --wp <WP> --json`. If CLI cannot run: `LOCAL_RUNTIME_UNAVAILABLE`.
+Call `praxis_quality_ensure` then show findings. Wait for human approval before writes.
+
+Then `praxis_quality_review` with `confirmation=YES`. If runtime cannot run: `LOCAL_RUNTIME_UNAVAILABLE`.
