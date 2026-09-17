@@ -1,7 +1,7 @@
 {
   "name": "praxis-quality",
   "version": "0.1.0-alpha.26",
-  "description": "Praxis Quality/QA plugin: local verify, coverage, Jira bugs, work-package reports.",
+  "description": "Praxis Quality — ensure the QA runtime, verify a Work Package, and record Jira results (including localized Bug types).",
   "author": {
     "name": "dfuture-co"
   },
