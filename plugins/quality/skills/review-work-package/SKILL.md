@@ -5,11 +5,16 @@ description: Review a Work Package, ensure Quality runtime, and publish the QA r
 
 # Review Work Package
 
-Do not ask the user to run `make quality-up`. Use MCP tools.
+Do not ask the user to run `make quality-up`. Use MCP tools from the **Praxis Runtime** Desktop Extension.
 
-## Capability detection
+## Shared Praxis Runtime
 
-Call `praxis_doctor`. If it cannot run: `LOCAL_RUNTIME_UNAVAILABLE`. Never paste tokens into chat.
+1. If `praxis_doctor` is not available: stop with `PRAXIS_RUNTIME_UNAVAILABLE`. Tell the user to install or enable the Praxis Runtime Desktop Extension. Do not instruct them to run CLI or edit config files.
+2. Call `praxis_doctor`.
+3. If Jira is not configured: stop with `JIRA_CONFIG_UNAVAILABLE`. Open Claude Desktop → Settings → Extensions → Praxis Runtime → Settings. Never request the token in chat.
+4. If `.project` is missing: `praxis_project_init_preview`, wait for approval, then `praxis_project_init_apply` with `confirmation=YES`.
+
+Allowed tools: common/Jira/project + Quality tools. Start the Quality service only via `praxis_quality_ensure`. Do not run BA/Architect/Developer apply tools.
 
 ## Flow
 
