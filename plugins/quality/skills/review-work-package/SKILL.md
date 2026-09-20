@@ -20,10 +20,11 @@ Allowed tools: common/Jira/project + Quality tools. Start the Quality service on
 
 1. `praxis_quality_ensure`
 2. `praxis_work_package_show`
-3. Read design/dev evidence
-4. Build/test locally only when local execution is available
-5. Preview Jira writes / findings. STOP. Wait for human approval where writes are required.
-6. `praxis_quality_review` with `confirmation=YES`
+3. Discover Developer completion from the product tree: `design/<WP>/dev/completion-evidence.json` and `design/<WP>/dev/quality-handoff.json`. Do **not** treat Jira Done as Quality readiness.
+4. Read acceptance checks, requirement IDs, Story keys, and verification results from those artifacts
+5. Build/test locally only when local execution is available
+6. Preview Jira writes / findings. STOP. Wait for human approval where writes are required.
+7. `praxis_quality_review` with `confirmation=YES`. Only Quality approval may move Jira to Done (`Готово`).
 
 Create a blocking Bug only for a real blocker, using the resolved numeric bug type id (not the display name «Баг»/Bug). Do not immediately apply after preview.
 
