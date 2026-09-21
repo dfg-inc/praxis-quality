@@ -28,4 +28,4 @@ Allowed tools: common/Jira/project + Quality tools. Start the Quality service on
 
 Create a blocking Bug only for a real blocker, using the resolved numeric bug type id (not the display name «Баг»/Bug). Do not immediately apply after preview.
 
-Examples: «Проверь WP-20260914-002 и дай финальный QA результат.» / “Review WP-20260914-002 and give the QA outcome.”
+Examples: “Review WP-20260914-002 and give the QA outcome.” Do not start Quality Review until `praxis_quality_ensure` reports healthy. Ensure does not approve QA or move Jira to Done.

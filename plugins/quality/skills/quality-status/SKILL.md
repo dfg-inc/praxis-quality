@@ -13,7 +13,7 @@ This Skill uses tools from the **Praxis Runtime** Desktop Extension.
 2. Call `praxis_doctor`.
 3. If Jira is not configured: stop with `JIRA_CONFIG_UNAVAILABLE`. Open Claude Desktop → Settings → Extensions → Praxis Runtime → Settings. Never request the token in chat.
 
-Allowed tools: common/Jira/project + Quality status. Start Quality only via `praxis_quality_ensure` when this Skill needs a live service.
+Allowed tools: common/Jira/project + Quality status. Start Quality only via `praxis_quality_ensure` when this Skill needs a live service. `praxis_quality_status` does not start Quality; `not_started` is normal before ensure.
 
 Call MCP:
 
