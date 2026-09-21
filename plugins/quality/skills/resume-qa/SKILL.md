@@ -18,3 +18,5 @@ Allowed tools: common/Jira/project + Quality. Start Quality only via `praxis_qua
 Call `praxis_quality_status` with the Work Package, then `praxis_quality_ensure` if needed. Show the latest review, whether it is current or stale, and whether Jira approval has been applied.
 
 If a fresh review is needed: `praxis_quality_review` (does not write Jira). Then `praxis_quality_apply_preview`. Wait for human approval before `praxis_quality_apply` with `confirmation=YES` and `previewFingerprint`.
+
+If Apply is partial, retry the **same** fingerprint. If Jira drifted before this Apply, generate a new preview. Never reuse an older fingerprint after a new preview.

@@ -23,7 +23,7 @@ Allowed tools: common/Jira/project + Quality tools. Start the Quality service on
 3. Show the acceptance matrix, Quality's own test results, findings, and evidence paths.
 4. Quality apply preview: `praxis_quality_apply_preview`. STOP. Wait for human approval.
 5. Only after the human confirms the shown plan: `praxis_quality_apply` with `confirmation=YES` and that `previewFingerprint`.
-6. Check postconditions with `praxis_quality_status`.
+6. Check postconditions with `praxis_quality_status`: Jira Done, local `qualityState=approved`, review applied. If Apply is partial, retry the **same** fingerprint. Do not reuse a previous preview after generating a new one.
 
 Never call `praxis_quality_review` with `confirmation=YES` to approve Jira. Review itself is not approval. Jira Done, Bugs, comments, and properties happen only in Quality Apply.
 
