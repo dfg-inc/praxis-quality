@@ -1,6 +1,6 @@
 ---
 name: review-work-package
-description: Review a Work Package, ensure Quality runtime, and publish the QA result.
+description: Review a Work Package via Quality Service, persist QA evidence, then preview and apply Jira only after human approval.
 ---
 
 # Review Work Package
@@ -18,14 +18,15 @@ Allowed tools: common/Jira/project + Quality tools. Start the Quality service on
 
 ## Flow
 
-1. `praxis_quality_ensure`
-2. `praxis_work_package_show`
-3. Discover Developer completion from the product tree: `design/<WP>/dev/completion-evidence.json` and `design/<WP>/dev/quality-handoff.json`. Do **not** treat Jira Done as Quality readiness.
-4. Read acceptance checks, requirement IDs, Story keys, and verification results from those artifacts
-5. Build/test locally only when local execution is available
-6. Preview Jira writes / findings. STOP. Wait for human approval where writes are required.
-7. `praxis_quality_review` with `confirmation=YES`. Only Quality approval may move Jira to Done (`Готово`).
+1. Quality intake: `praxis_quality_status` then `praxis_quality_ensure` until healthy.
+2. Quality review: `praxis_quality_review` for the Work Package. Review is **not** approval. It must not write Jira.
+3. Show the acceptance matrix, Quality's own test results, findings, and evidence paths.
+4. Quality apply preview: `praxis_quality_apply_preview`. STOP. Wait for human approval.
+5. Only after the human confirms the shown plan: `praxis_quality_apply` with `confirmation=YES` and that `previewFingerprint`.
+6. Check postconditions with `praxis_quality_status`.
 
-Create a blocking Bug only for a real blocker, using the resolved numeric bug type id (not the display name «Баг»/Bug). Do not immediately apply after preview.
+Never call `praxis_quality_review` with `confirmation=YES` to approve Jira. Review itself is not approval. Jira Done, Bugs, comments, and properties happen only in Quality Apply.
 
-Examples: “Review WP-20260914-002 and give the QA outcome.” Do not start Quality Review until `praxis_quality_ensure` reports healthy. Ensure does not approve QA or move Jira to Done.
+Create a blocking Bug only from a previewed finding, using the resolved numeric bug type id (not the display name «Баг»/Bug). Do not immediately apply after preview.
+
+Examples: “Review WP-20260914-002.” Then “Show the Quality apply preview.” Then wait. Do not start Quality Review until `praxis_quality_ensure` reports healthy. Ensure does not approve QA or move Jira to Done.

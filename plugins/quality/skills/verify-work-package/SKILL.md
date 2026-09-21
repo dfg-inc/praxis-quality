@@ -1,6 +1,6 @@
 ---
 name: verify-work-package
-description: Verify a claimed/ready-for-QA Jira Work Package locally and write a Quality report.
+description: Verify a claimed/ready-for-QA Work Package locally and persist a Quality review without writing Jira.
 ---
 
 # Verify work package
@@ -15,6 +15,8 @@ This Skill uses tools from the **Praxis Runtime** Desktop Extension.
 
 Allowed tools: common/Jira/project + Quality. Start Quality only via `praxis_quality_ensure`.
 
-Call `praxis_quality_ensure`, read the WP, preview findings, wait for human approval, then `praxis_quality_review` with `confirmation=YES`.
+Call `praxis_quality_ensure`, then `praxis_quality_review`. Show the acceptance matrix and findings. Review does not write Jira.
+
+If the human wants Jira updates: `praxis_quality_apply_preview`, STOP, wait for approval, then `praxis_quality_apply` with `confirmation=YES` and `previewFingerprint`.
 
 Only execute install/build/test/coverage from `.project` `quality:` keys, and only when local execution is available. Do not immediately apply after preview.

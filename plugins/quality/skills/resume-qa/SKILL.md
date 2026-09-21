@@ -1,6 +1,6 @@
 ---
 name: resume-qa
-description: Resume Quality review for a Work Package.
+description: Resume Quality review for a Work Package from persisted evidence.
 ---
 
 # Resume QA
@@ -15,6 +15,6 @@ This Skill uses tools from the **Praxis Runtime** Desktop Extension.
 
 Allowed tools: common/Jira/project + Quality. Start Quality only via `praxis_quality_ensure`.
 
-Call `praxis_quality_ensure` then show findings. Wait for human approval before writes.
+Call `praxis_quality_status` with the Work Package, then `praxis_quality_ensure` if needed. Show the latest review, whether it is current or stale, and whether Jira approval has been applied.
 
-Then `praxis_quality_review` with `confirmation=YES`.
+If a fresh review is needed: `praxis_quality_review` (does not write Jira). Then `praxis_quality_apply_preview`. Wait for human approval before `praxis_quality_apply` with `confirmation=YES` and `previewFingerprint`.
