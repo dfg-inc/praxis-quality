@@ -20,6 +20,6 @@ Call MCP:
 - `praxis_doctor`
 - `praxis_quality_status`
 
-When the user names a Work Package, pass it so status includes the latest review, evidence path, snapshot freshness, and whether Jira approval has been applied.
+When the user names a Work Package, pass it so status includes canonical `qualityState`, applied Review ID, evidence path, snapshot freshness, and whether Jira approval has been applied. Use `praxis_quality_apply_status` to inspect the managed comment and consistency. Use `praxis_quality_review_show` with `reviewId` to read Quality storage. Those tools are read-only.
 
 Read-only. No confirmation.
