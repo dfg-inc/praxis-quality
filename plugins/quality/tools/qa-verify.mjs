@@ -1,30 +1,15 @@
 #!/usr/bin/env node
-import { createJiraProvider, loadJiraConfig } from "@praxis/jira";
-import { qaVerifyWorkPackage } from "@praxis/jira/workflow";
-
-function flag(name) {
-  const i = process.argv.indexOf(name);
-  return i >= 0 ? process.argv[i + 1] : undefined;
-}
-
-async function main() {
-  const wp = flag("--wp");
-  const repo = flag("--repo") ?? process.cwd();
-  if (!wp) {
-    console.error("usage: qa-verify.mjs --wp KEY --repo PATH");
-    process.exit(2);
-  }
-  const provider = createJiraProvider({ config: loadJiraConfig() });
-  const report = await qaVerifyWorkPackage({
-    provider,
-    wpKey: wp,
-    repo,
-    allowTestWrites: process.env.PRAXIS_QA_ALLOW_TEST_WRITES === "1",
-  });
-  console.log(JSON.stringify(report, null, 2));
-}
-
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+console.error(
+  "qa-verify.mjs no longer writes Jira. Use `praxis quality review` then `praxis quality apply-preview` / `praxis quality apply`.",
+);
+process.stdout.write(
+  `${JSON.stringify({
+    ok: false,
+    command: "qa-verify",
+    code: "INVALID_INPUT",
+    errors: [
+      "Deprecated: Quality Review does not mutate Jira. Use praxis quality review / apply-preview / apply.",
+    ],
+  })}\n`,
+);
+process.exit(2);
