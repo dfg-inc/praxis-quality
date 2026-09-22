@@ -1,14 +1,12 @@
 # praxis-quality
 
-Independent Praxis quality Skills plugin. Distribution artifact: `praxis-quality.zip`.
+Independent Praxis Quality **Skills** plugin. Distribution: **`praxis-quality.zip`**.
 
-Requires the shared Praxis Runtime Desktop Extension (`praxis-runtime.mcpb`). This repo does not ship an MCPB.
-
-This plugin must not depend on another role plugin. Shared libraries come from praxis-core at `0.1.0-alpha.44`.
-
-User-facing docs live in praxis-docs (`docs/user/plugins/quality.md`).
+The Quality **HTTP worker** lives in `praxis-runtime`, not here.
 
 ```bash
-npm install
+npm ci
 npm run verify
 ```
+
+CI: `validate`, `acceptance`, `pack_zip`. Core via tracked `vendor/*.tgz`.
