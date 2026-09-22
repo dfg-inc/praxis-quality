@@ -9,9 +9,12 @@ npm ci
 npm run verify
 ```
 
-CI: `validate`, `acceptance` (Skills ZIP + claude-plugins), `pack_zip`.
+CI: `validate`, `acceptance` (Skills ZIP + claude-plugins), `pack_zip`; on tag `v$version` → `publish_release`.
+
+Install from [GitLab Releases](https://gl.jetru.by/engineering/ai-tooling/praxis-quality/-/releases): `praxis-quality.zip` + `release-meta.json`.
 
 Core via tracked `vendor/*.tgz`. Quality **HTTP worker** gates (`accept:quality-*`) live in **praxis-runtime**, not here.
+
 
 Optional worker governance (needs Runtime checkout):
 
