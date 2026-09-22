@@ -1,4 +1,5 @@
 # praxis-quality — GitLab CI (Skills ZIP only)
+# HTTP worker / WBS 6.x quality-service gates live in praxis-runtime.
 stages:
   - verify
   - package
@@ -30,7 +31,8 @@ acceptance:
   stage: verify
   script:
     - npm run build
-    - npm run accept:quality-governance
+    - npm run pack:zip
+    - npm run accept:claude-plugins
 
 pack_zip:
   stage: package

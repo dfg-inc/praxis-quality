@@ -101,10 +101,35 @@ function packWorkspace(name, src) {
   return join(dest, tgz);
 }
 
+// Skills-only repo: Core packages come from vendor/*.tgz.
+// Quality HTTP worker lives in praxis-runtime (PRAXIS_RUNTIME_ROOT).
+function vendorTgz(name) {
+  const file = join(root, "vendor", `praxis-${name}-0.1.0-alpha.44.tgz`);
+  if (!existsSync(file)) fail(`missing vendor tgz: ${file}`);
+  return file;
+}
+
+function resolveQualityService() {
+  const candidates = [
+    process.env.PRAXIS_RUNTIME_ROOT
+      ? join(process.env.PRAXIS_RUNTIME_ROOT, "apps/quality-service")
+      : null,
+    join(root, "apps/quality-service"),
+  ].filter(Boolean);
+  return candidates.find((p) => existsSync(join(p, "package.json")));
+}
+
+const qualityService = resolveQualityService();
+if (!qualityService) {
+  fail(
+    "quality-service not found. Worker governance runs against praxis-runtime — set PRAXIS_RUNTIME_ROOT, or use Skills-only verify (npm run verify) without this script.",
+  );
+}
+
 const tgzs = [
-  packWorkspace("contracts", join(root, "packages/contracts")),
-  packWorkspace("knowledge", join(root, "packages/knowledge")),
-  packWorkspace("quality", join(root, "apps/quality-service")),
+  vendorTgz("contracts"),
+  vendorTgz("knowledge"),
+  packWorkspace("quality", qualityService),
 ];
 const mirrorDev = join(root, "dist/release-mirror/plugins/developer");
 if (existsSync(mirrorDev)) {
