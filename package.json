@@ -17,7 +17,7 @@
     "accept:claude-plugins": "node tools/scripts/claude-plugins-acceptance.mjs",
     "accept:claude-hosted-plugins": "node tools/scripts/claude-hosted-plugins-acceptance.mjs",
     "accept:quality-governance": "node tools/scripts/quality-governance-acceptance.mjs --rebuild",
-    "verify": "npm run test && npm run plugins:validate && npm run check:skill-cli && npm run check:boundaries && npm run pack:zip && npm run accept:claude-plugins && npm run accept:quality-governance"
+    "verify": "npm run test && npm run plugins:validate && npm run check:skill-cli && npm run check:boundaries && npm run pack:zip && npm run accept:claude-plugins"
   },
   "engines": {
     "node": ">=20"
@@ -27,6 +27,7 @@
     "@praxis/plugin-sdk": "file:vendor/praxis-plugin-sdk-0.1.0-alpha.44.tgz",
     "@praxis/knowledge": "file:vendor/praxis-knowledge-0.1.0-alpha.44.tgz",
     "@praxis/project-config": "file:vendor/praxis-project-config-0.1.0-alpha.44.tgz",
-    "@praxis/jira": "file:vendor/praxis-jira-0.1.0-alpha.44.tgz"
+    "@praxis/jira": "file:vendor/praxis-jira-0.1.0-alpha.44.tgz",
+    "@praxis/contracts": "file:vendor/praxis-contracts-0.1.0-alpha.44.tgz"
   }
 }

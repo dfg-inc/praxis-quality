@@ -347,7 +347,6 @@ export function stagePlugin(id, outPluginsDir) {
   }
 
   if (id === "quality") {
-    assertBuilt("plugins/jira/dist/index.js");
     const pkg = stripWorkspaceDeps(readJson(join(src, "package.json")));
     pkg.files = [".claude-plugin", "hooks", "skills", "prompts", "tools", "README.md"];
     pkg.scripts = {

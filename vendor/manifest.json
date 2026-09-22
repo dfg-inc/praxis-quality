@@ -5,6 +5,7 @@
     "@praxis/plugin-sdk",
     "@praxis/knowledge",
     "@praxis/project-config",
-    "@praxis/jira"
+    "@praxis/jira",
+    "@praxis/contracts"
   ]
 }
