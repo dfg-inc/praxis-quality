@@ -2,23 +2,23 @@
 
 Independent Praxis Quality **Skills** plugin. Distribution: **`praxis-quality.zip`**.
 
-The Quality **HTTP worker** lives in `praxis-runtime`, not here.
+The Quality **HTTP worker** lives in [`praxis-runtime`](https://github.com/dfg-inc/praxis-runtime), not here.
+
+## Clone / develop
 
 ```bash
+git clone https://github.com/dfg-inc/praxis-quality.git
+cd praxis-quality
 npm ci
 npm run verify
 ```
 
-CI: `validate`, `acceptance` (Skills ZIP + claude-plugins), `pack_zip`; on tag `v$version` → `publish_release`.
+## Install
 
-Install from [GitLab Releases](https://gl.jetru.by/engineering/ai-tooling/praxis-quality/-/releases): `praxis-quality.zip` + `release-meta.json`.
+[Releases](https://github.com/dfg-inc/praxis-quality/releases): `praxis-quality.zip` + `release-meta.json`.
 
-Core via tracked `vendor/*.tgz`. Quality **HTTP worker** gates (`accept:quality-*`) live in **praxis-runtime**, not here.
+Core via tracked `vendor/*.tgz`. Worker gates (`accept:quality-*`) live in **praxis-runtime**.
 
+## Release
 
-Optional worker governance (needs Runtime checkout):
-
-```bash
-export PRAXIS_RUNTIME_ROOT=/path/to/praxis-runtime
-npm run accept:quality-governance
-```
+Tag `v$version` → GitHub Release via Actions.

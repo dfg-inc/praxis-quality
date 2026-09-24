@@ -29,5 +29,13 @@
     "@praxis/project-config": "file:vendor/praxis-project-config-0.1.0-alpha.44.tgz",
     "@praxis/jira": "file:vendor/praxis-jira-0.1.0-alpha.44.tgz",
     "@praxis/contracts": "file:vendor/praxis-contracts-0.1.0-alpha.44.tgz"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dfg-inc/praxis-quality.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dfg-inc/praxis-quality/issues"
+  },
+  "homepage": "https://github.com/dfg-inc/praxis-quality"
 }
