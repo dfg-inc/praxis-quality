@@ -24,4 +24,10 @@ Return the finding to the owner with `praxis_workflow_preview` action `quality-c
 
 Verdicts are `PASS`, `PASS_WITH_RISKS`, or `FAIL`. A revised requirement makes older verdicts stale.
 
+Verify User Stories with `verify-stories`. Quality executes the implementation. Do not pass a behavior label, and do not treat green unit tests or a Developer handoff as proof. Happy-path steps that cannot be executed stay `NOT_VERIFIED` or `BLOCKED` and the feature verdict is `FAIL`. Scenario statuses are `PASS`, `FAIL`, `PASS_WITH_RISKS`, `BLOCKED`, and `NOT_VERIFIED`. The final verdict stays `PASS`, `PASS_WITH_RISKS`, or `FAIL`.
+
+Call `locate-repositories` before asking the user for a checkout. Ask only for services that have neither `localPath` nor `remoteUrl`.
+
+When a fix is authorized, `prepare-fix` may commit on a working branch or an existing feature branch and open a review request. Do not merge, do not push to `main` or `master`, and do not force-push. Run `verify-stories` again with `independentRerun: true` after the fix. A patch Quality wrote is not proof until that second execution passes.
+
 Call `praxis_capabilities` when the failure is a business or architecture decision. Do not execute external mutations from guidance.
