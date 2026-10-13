@@ -16,7 +16,9 @@ description: Independently verify requirements, including partial success and cr
 
 A service-level pass is not a feature pass. Green unit tests are not sufficient for PASS.
 
-For "Invalid CSV rows must not prevent valid users from being imported" (`REQ-BUI-001`), all-or-nothing transaction behavior is a FAIL even when existing tests are green. Record the requirement id, the observed behavior, and evidence.
+For partial success (`REQ-BUI-061` in the bulk-import canon: invalid rows never prevent valid rows; the import is not all-or-nothing), read the implementation file. Pass `implementationPath` on `quality-check`. Do not pass `observedBehavior` as proof. All-or-nothing transaction behavior is a FAIL even when existing tests are green and the developer claims partial success.
+
+A feature verdict (`feature-verdict`) fails when any requirement lacks a current PASS or any service lacks a current implementation and approval. A revised requirement makes older verdicts and implementation records stale.
 
 Return the finding to the owner with `praxis_workflow_preview` action `quality-check`, show it, and wait for approval before `praxis_workflow_apply` (`confirmation=YES`, matching `previewFingerprint`).
 

@@ -41,7 +41,7 @@ const UI_SKILLS = {
     "create-merge-request",
     "check-delivery-status",
   ],
-  quality: ["review-work-package", "resume-qa", "quality-status", "verify-work-package"],
+  quality: ["review-work-package", "resume-qa", "quality-status", "local-workflow", "verify-work-package"],
 };
 
 const FORBIDDEN_CLI = [

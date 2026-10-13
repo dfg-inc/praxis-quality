@@ -6,7 +6,7 @@ export const PLUGINS = [
     title: "Praxis Quality",
     src: "plugins/quality",
     role: "quality",
-    requiredSkills: ["review-work-package", "resume-qa", "quality-status"],
+    requiredSkills: ["review-work-package", "resume-qa", "quality-status", "local-workflow"],
     helpCommands: [["quality", "--help"]],
   },
 ];
