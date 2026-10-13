@@ -14,9 +14,13 @@ description: Independently verify requirements, including partial success and cr
 
 ## Behavior
 
-A service-level pass is not a feature pass. Green unit tests are not sufficient for PASS.
+A service-level pass is not a feature pass. Green unit tests are not sufficient for PASS. `verify-stories` returns both `serviceVerdicts` and the feature `verdict`.
 
-For partial success (`REQ-BUI-061` in the bulk-import canon: invalid rows never prevent valid rows; the import is not all-or-nothing), read the implementation file. Pass `implementationPath` on `quality-check`. Do not pass `observedBehavior` as proof. All-or-nothing transaction behavior is a FAIL even when existing tests are green and the developer claims partial success.
+Inspect the repositories Quality was given. Read languages, frameworks, tests, and source files from the verification profile. Ask for a repository only when `locate-repositories` still lists it. Do not treat a module import or a local function call as deployed end-to-end coverage. `deployedEndToEnd` stays false unless a real deployed environment was executed.
+
+Executable checks belong to the project in `.praxis/quality/checks.json`. A project may also supply `.praxis/quality/adapter.mjs`. Praxis Runtime does not embed a product-specific code fix. When a check fails, record the finding with expected and observed behavior.
+
+For a partial-success requirement, `quality-check` still reads the implementation file. Pass `implementationPath`. Do not pass `observedBehavior` as proof. All-or-nothing behavior is a FAIL even when existing tests are green and the developer claims partial success.
 
 A feature verdict (`feature-verdict`) fails when any requirement lacks a current PASS or any service lacks a current implementation and approval. A revised requirement makes older verdicts and implementation records stale.
 
@@ -28,6 +32,6 @@ Verify User Stories with `verify-stories`. Quality executes the implementation. 
 
 Call `locate-repositories` before asking the user for a checkout. Ask only for services that have neither `localPath` nor `remoteUrl`.
 
-When a fix is authorized, `prepare-fix` may commit on a working branch or an existing feature branch and open a review request. Do not merge, do not push to `main` or `master`, and do not force-push. Run `verify-stories` again with `independentRerun: true` after the fix. A patch Quality wrote is not proof until that second execution passes.
+When a fix is authorized, write the coding agent's patch to `.praxis/quality/proposals/<serviceId>.json` (`files[].after` or `files[].diff`). `prepare-fix` applies that patch on a working branch or an existing feature branch and may open a review request. If no patch is available, stop with `HOST_EDIT_UNAVAILABLE` and leave the repository unchanged. Do not merge, do not push to `main` or `master`, and do not force-push. Run `verify-stories` again with `independentRerun: true` after the fix. Generating or applying a patch is not a passing verdict.
 
 Call `praxis_capabilities` when the failure is a business or architecture decision. Do not execute external mutations from guidance.
