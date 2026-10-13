@@ -1,6 +1,6 @@
 {
   "name": "@praxis/quality",
-  "version": "0.1.0-alpha.46",
+  "version": "0.1.0-alpha.47",
   "private": true,
   "description": "praxis-quality Claude Code plugin (company Quality role)",
   "license": "UNLICENSED",
@@ -10,8 +10,8 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@praxis/plugin-sdk": "file:../../vendor/praxis-plugin-sdk-0.1.0-alpha.44.tgz",
-    "@praxis/jira": "file:../../vendor/praxis-jira-0.1.0-alpha.44.tgz"
+    "@praxis/plugin-sdk": "file:../../vendor/praxis-plugin-sdk-0.1.0-alpha.47.tgz",
+    "@praxis/jira": "file:../../vendor/praxis-jira-0.1.0-alpha.47.tgz"
   },
   "devDependencies": {
     "vitest": "^3.2.4"

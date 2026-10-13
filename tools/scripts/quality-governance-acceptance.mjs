@@ -92,6 +92,16 @@ function packWorkspace(name, src) {
     const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
     if (name === "quality") pkg.files = ["dist", "bin", "package.json"];
     if (name === "contracts" || name === "knowledge") pkg.files = ["dist", "bin", "package.json"];
+    const ecosystemVersion = JSON.parse(readFileSync(join(root, "package.json"), "utf8")).version;
+    for (const section of ["dependencies", "devDependencies", "peerDependencies"]) {
+      const deps = pkg[section];
+      if (!deps) continue;
+      for (const [dep, range] of Object.entries(deps)) {
+        if (typeof range === "string" && range.startsWith("file:") && dep.startsWith("@praxis/")) {
+          deps[dep] = ecosystemVersion;
+        }
+      }
+    }
     writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`);
   }
   const pack = run("npm pack", dest);
@@ -104,7 +114,8 @@ function packWorkspace(name, src) {
 // Skills-only repo: Core packages come from vendor/*.tgz.
 // Quality HTTP worker lives in praxis-runtime (PRAXIS_RUNTIME_ROOT).
 function vendorTgz(name) {
-  const file = join(root, "vendor", `praxis-${name}-0.1.0-alpha.44.tgz`);
+  const version = JSON.parse(readFileSync(join(root, "package.json"), "utf8")).version;
+  const file = join(root, "vendor", `praxis-${name}-${version}.tgz`);
   if (!existsSync(file)) fail(`missing vendor tgz: ${file}`);
   return file;
 }
