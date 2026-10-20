@@ -1,0 +1,203 @@
+{
+  "contract": "praxis.workflow.state",
+  "version": "1.0.0",
+  "workflowId": "WF-WI-QUALITY-EVIDENCE-CONSIST-001",
+  "projectId": "praxis-quality",
+  "workItem": {
+    "id": "WI-QUALITY-EVIDENCE-CONSIST-001",
+    "projectId": "praxis-quality",
+    "title": "Quality evidence consistency between verify-stories and quality-check",
+    "source": "repository",
+    "status": "in_progress",
+    "revision": 2
+  },
+  "requirements": [
+    {
+      "id": "REQ-QEV-001",
+      "statement": "verify-stories and quality-check must derive requirement verdicts from one authoritative evidence source: executed coverage of current, non-superseded Story revisions in workflow state.",
+      "revision": 1,
+      "status": "proposed",
+      "acceptanceCriteria": [
+        {
+          "id": "REQ-QEV-001-AC-01",
+          "requirementId": "REQ-QEV-001",
+          "statement": "After verify-stories with PASS scenarios for a requirement, quality-check for that requirement does not report missing independent evidence and does not return the item to Developer.",
+          "revision": 1
+        },
+        {
+          "id": "REQ-QEV-001-AC-02",
+          "requirementId": "REQ-QEV-001",
+          "statement": "verify-stories records a requirement-scope verdict for every requirement it covered.",
+          "revision": 1
+        },
+        {
+          "id": "REQ-QEV-001-AC-03",
+          "requirementId": "REQ-QEV-001",
+          "statement": "When all executed scenarios pass but the Story is unconfirmed, the requirement verdict is PASS_WITH_RISKS with reason story-unconfirmed:<storyId>@<revision>, distinct from missing evidence.",
+          "revision": 1
+        },
+        {
+          "id": "REQ-QEV-001-AC-04",
+          "requirementId": "REQ-QEV-001",
+          "statement": "A FAIL scenario or a partial-success heuristic FAIL yields FAIL; neither tool upgrades PASS_WITH_RISKS to PASS without all scenarios PASS and every linked Story confirmed.",
+          "revision": 1
+        },
+        {
+          "id": "REQ-QEV-001-AC-05",
+          "requirementId": "REQ-QEV-001",
+          "statement": "Coverage records the Story revision it verified; coverage from an older revision is not evidence for the current revision.",
+          "revision": 1
+        },
+        {
+          "id": "REQ-QEV-001-AC-06",
+          "requirementId": "REQ-QEV-001",
+          "statement": "With no executed coverage, quality-check still reports missing independent evidence (green tests alone remain insufficient).",
+          "revision": 1
+        },
+        {
+          "id": "REQ-QEV-001-AC-07",
+          "requirementId": "REQ-QEV-001",
+          "statement": "A regression test reproduces the original false finding and the corrected result through the Runtime workflow tools.",
+          "revision": 1
+        }
+      ],
+      "serviceIds": [
+        "praxis-core-contracts",
+        "praxis-runtime-mcp"
+      ],
+      "assumptionIds": []
+    }
+  ],
+  "services": [],
+  "handoffs": [
+    {
+      "contract": "praxis.role.handoff",
+      "version": "1.0.0",
+      "workflowId": "WF-WI-QUALITY-EVIDENCE-CONSIST-001",
+      "workItemId": "WI-QUALITY-EVIDENCE-CONSIST-001",
+      "handoffId": "HO-1",
+      "sourceRole": "ba",
+      "targetRole": "architect",
+      "serviceIds": [
+        "praxis-core-contracts",
+        "praxis-runtime-mcp"
+      ],
+      "requirementIds": [
+        "REQ-QEV-001"
+      ],
+      "acceptanceCriterionIds": [
+        "REQ-QEV-001-AC-01",
+        "REQ-QEV-001-AC-02",
+        "REQ-QEV-001-AC-03",
+        "REQ-QEV-001-AC-04",
+        "REQ-QEV-001-AC-05",
+        "REQ-QEV-001-AC-06",
+        "REQ-QEV-001-AC-07"
+      ],
+      "storyIds": [],
+      "artifactRefs": [],
+      "decisions": [],
+      "assumptions": [],
+      "openQuestions": [],
+      "risks": [],
+      "blockers": [],
+      "decisionRecords": [],
+      "resolved": [],
+      "nextActions": [
+        "Define the shared evidence function and coverage revision field"
+      ],
+      "readiness": "ready",
+      "evidenceRefs": [],
+      "revision": 1,
+      "fingerprint": "sha256:35cfa4a05c9b326734297008c6e144efc2598a7b096055c7c96988eb850d85d4"
+    },
+    {
+      "contract": "praxis.role.handoff",
+      "version": "1.0.0",
+      "workflowId": "WF-WI-QUALITY-EVIDENCE-CONSIST-001",
+      "workItemId": "WI-QUALITY-EVIDENCE-CONSIST-001",
+      "handoffId": "HO-2",
+      "sourceRole": "architect",
+      "targetRole": "developer",
+      "serviceIds": [
+        "praxis-core-contracts",
+        "praxis-runtime-mcp"
+      ],
+      "requirementIds": [
+        "REQ-QEV-001"
+      ],
+      "acceptanceCriterionIds": [
+        "REQ-QEV-001-AC-01",
+        "REQ-QEV-001-AC-02",
+        "REQ-QEV-001-AC-03",
+        "REQ-QEV-001-AC-04",
+        "REQ-QEV-001-AC-05",
+        "REQ-QEV-001-AC-06",
+        "REQ-QEV-001-AC-07"
+      ],
+      "storyIds": [],
+      "artifactRefs": [],
+      "decisions": [
+        "DEC-QEV-001"
+      ],
+      "assumptions": [],
+      "openQuestions": [],
+      "risks": [],
+      "blockers": [],
+      "decisionRecords": [],
+      "resolved": [],
+      "nextActions": [
+        "Implement DEC-QEV-001 in praxis-core",
+        "Unit + MCP-level regression",
+        "Revendor runtime"
+      ],
+      "readiness": "ready",
+      "evidenceRefs": [],
+      "revision": 2,
+      "fingerprint": "sha256:0cd43fbe100a12ec6155d34365af941b81f5875eb87463a1a1e453d473d067f0"
+    }
+  ],
+  "findings": [],
+  "verdicts": [],
+  "decisions": [
+    {
+      "id": "DEC-QEV-001",
+      "statement": "Add requirementEvidence(state, requirementId) in praxis-core contracts/workflow.ts as the single evidence authority. It reads state.coverage for the requirement from non-superseded stories whose current revision equals the entry's storyRevision (entries without storyRevision are accepted for backward compatibility only while the story is at revision 1). Returns {status:'missing'} or {status:'executed', verdict (rollupStoryVerdict), reasons, provenance}. Unconfirmed linked stories add reason story-unconfirmed:<id>@<rev> and cap the verdict at PASS_WITH_RISKS. CoverageEntrySchema gains optional storyRevision, set by record-verification. record-verification records a requirement-scope verdict per covered requirement. quality-check: heuristic FAIL still wins; otherwise executed evidence decides the verdict; only status=missing produces the 'no independent behavioral evidence' finding; FAIL coverage produces a developer finding; unconfirmed-only risk produces no developer finding.",
+      "confirmed": true,
+      "revision": 2
+    }
+  ],
+  "openQuestions": [],
+  "risks": [],
+  "blockers": [],
+  "assumptions": [],
+  "implementationUnits": [
+    {
+      "id": "IMPL-QEV-001",
+      "serviceId": "praxis-core-contracts",
+      "requirementIds": [
+        "REQ-QEV-001"
+      ],
+      "path": "packages/contracts/src/workflow.ts",
+      "summary": "praxis-core 32aae64: requirementEvidence() shared by record-verification and quality-check; storyRevision on coverage; requirement verdict recorded by verify-stories; story-unconfirmed/story-not-verified reasons. Tests: contracts/src/quality-evidence.test.ts (7), negative control verified.",
+      "contractRef": "DEC-QEV-001",
+      "stale": false
+    }
+  ],
+  "stories": [],
+  "coverage": [],
+  "changes": [],
+  "stage": "in_progress",
+  "history": [
+    {
+      "revision": 1,
+      "stage": "draft",
+      "note": "verify-stories executed checks and stored PASS coverage for REQ-CFG-001 (praxis-core WI-TREAT-UNEXPANDED-CLAUDE--001), yet quality-check reported 'no independent behavioral evidence' and returned the item to Developer. quality-check only applies an import partial-success heuristic and never reads state.coverage; verify-stories records no requirement-scope verdict, so feature-verdict always reports a missing requirement verdict."
+    },
+    {
+      "revision": 2,
+      "stage": "in_progress",
+      "note": "ba → architect"
+    }
+  ]
+}
