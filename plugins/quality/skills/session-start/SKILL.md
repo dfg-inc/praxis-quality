@@ -5,15 +5,15 @@ description: Start a QA session — bootstrap .project and knowledge for role qa
 
 # Session start
 
-Load `.project` defaults, the applicable knowledge rules for role `quality`, stage `quality` (override with `stage`; not for quality), and the Work Items of this repository. Does not mutate anything.
+Load `.project` defaults, the applicable knowledge rules for the Quality role (the knowledge dataset calls it `qa`; stage is always `quality`), and the Work Items of this repository. Does not mutate anything.
 
 ## What happens
 
-1. Call the Runtime tool **`praxis_session_start`** with `role: "quality"` (and `repo` when it is not the current directory). It works in every host, including Claude Desktop Chat, where skills run in an isolated sandbox and cannot execute local scripts. It is read-only and starts nothing.
+1. Call the Runtime tool **`praxis_session_start`** with `role: "quality"` (and `repo` when it is not the current directory; Quality takes no `stage`). It works in every host, including Claude Desktop Chat, where skills run in an isolated sandbox and cannot execute local scripts. It is read-only and starts nothing.
    - If `praxis_session_start` is not available, stop with `PRAXIS_RUNTIME_UNAVAILABLE`. Do not substitute a guess.
 2. Show the human what it returned: Runtime version and build fingerprint, `.project` status (missing / loaded / invalid), knowledge rules loaded or why skipped, the Work Items with the current one marked, and `nextSteps`.
 3. If `.project` is missing, surface the suggested path and continue with defaults only after the human acknowledges. If `knowledge.path` is unset, rules are **not applied**; do not invent a dataset path.
-4. If several Work Items exist and none is selected, ask which one and pass `workItemId` from then on.
+4. If several Work Items exist and none is selected, ask which one and pass `workItemId` from then on. Verify against a local Work Item's Stories and requirements; a Jira Work Package key is optional and is never invented.
 5. To show stored requirements, Stories, decisions, handoffs, open items or Quality evidence, call **`praxis_workflow_inspect`**. Do not ask the human to open files.
 
 ## Optional local script (CLI / Claude Code)
