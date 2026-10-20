@@ -35,3 +35,7 @@ Call `locate-repositories` before asking the user for a checkout. Ask only for s
 When a fix is authorized, write the coding agent's patch to `.praxis/quality/proposals/<serviceId>.json` (`files[].after` or `files[].diff`). `prepare-fix` applies that patch on a working branch or an existing feature branch and may open a review request. If no patch is available, stop with `HOST_EDIT_UNAVAILABLE` and leave the repository unchanged. Do not merge, do not push to `main` or `master`, and do not force-push. Run `verify-stories` again with `independentRerun: true` after the fix. Generating or applying a patch is not a passing verdict.
 
 Call `praxis_capabilities` when the failure is a business or architecture decision. Do not execute external mutations from guidance.
+
+## Inspect stored work
+
+When the user asks what exists ("show requirements, Stories, architecture decisions, current work and Quality results"), call `praxis_workflow_inspect` (read-only; no Jira needed). Start with `view: "overview"`, then `requirements`, `stories`, `decisions`, `work`, `handoffs`, `open-items` or `quality`, or `all`. Pass `workItemId` when several Work Items exist, and `id` for one record. Report what it returns, including Story confirmation state: an unconfirmed Story stays unconfirmed. Do not ask the user to open files for anything Runtime can return.
