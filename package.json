@@ -18,8 +18,9 @@
     "accept:claude-plugins": "node tools/scripts/claude-plugins-acceptance.mjs",
     "accept:claude-hosted-plugins": "node tools/scripts/claude-hosted-plugins-acceptance.mjs",
     "accept:quality-governance": "node tools/scripts/quality-governance-acceptance.mjs --rebuild",
-    "verify": "npm run test && npm run plugins:validate && npm run check:skill-cli && npm run check:boundaries && npm run pack:zip && npm run pack:full-zip && npm run accept:claude-plugins",
-    "check:version": "node tools/scripts/check-ecosystem-version.mjs"
+    "verify": "npm run test && npm run plugins:validate && npm run check:skill-cli && npm run check:boundaries && npm run pack:zip && npm run pack:full-zip && npm run accept:claude-plugins && npm run accept:plugin-validate",
+    "check:version": "node tools/scripts/check-ecosystem-version.mjs",
+    "accept:plugin-validate": "node tools/scripts/plugin-validate-acceptance.mjs"
   },
   "engines": {
     "node": ">=20"
