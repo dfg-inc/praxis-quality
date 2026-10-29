@@ -36,9 +36,18 @@ When a fix is authorized, write the coding agent's patch to `.praxis/quality/pro
 
 Call `praxis_capabilities` when the failure is a business or architecture decision. Do not execute external mutations from guidance.
 
+## What counts as proof (alpha.49)
+
+- **A requirement or Story is PASS only when EVERY current acceptance criterion has a current, independently executed PASS.** `verify-stories` and `feature-verdict` report per requirement and per Story: total, verified, passed, failed, blocked, missing, stale, attested. Read those counts, not only the verdict. A missing, BLOCKED, NOT_VERIFIED or stale criterion keeps the requirement from PASS and is named by id in the gaps. Say which criteria are unproven; never round up.
+- **Provenance.** Evidence recorded by `verify-stories` is stamped `executed` (a module ran) or `browser` (a real browser ran) by the Runtime. A `record-verification` you send yourself is stored as `agent`-attested whatever it claims: it can add risk notes, it can never make a criterion PASS and it cannot overwrite or retire executed evidence. Do not write PASS for something you did not run.
+- **Merge, not replace.** `record-verification` adds or updates scenarios by `scenarioId`; the others stay. A scenario id cannot move to another criterion. `verify-stories` re-runs refresh the Runtime's own results in place (same ids) and keep agent attestations.
+- **Stale.** A criterion or Story revised after the result was recorded makes that result stale (`older revision`): run the checks again.
+- **Browser evidence.** For UI behaviour add checks of `level: "browser"` to `.praxis/quality/<work item>/checks.json`: a `browser` section (`{"serve": {"root": "dist"}}`, the BUILT app inside the service directory) and, per check, `steps`: actions (`goto` a path or query, `click`, `fill`, `select`, `press`, `back`, `forward`, `reload`, `viewport`) and assertions (`expectUrl`, `expectCount`, `expectVisible`, `expectHidden`, `expectText`, `expectValue`, `expectFocus`). The steps are data: Praxis serves the bundle on loopback and drives a real Chromium in its own process; the app can reach nothing outside that origin. The result carries the runner, the bundle digest and screenshot digests. Without a browser or a built bundle every such check is `BLOCKED` with the reason; that is the honest answer, not a failure to hide. Operators set `PRAXIS_PLAYWRIGHT_DIR` and `PRAXIS_BROWSER_EXECUTABLE`.
+- After a Developer fix: `verify-stories` with `independentRerun: true`. The finding is resolved by the new result, not by the patch.
+
 ## Inspect stored work
 
-When the user asks what exists ("show requirements, Stories, architecture decisions, current work and Quality results"), call `praxis_workflow_inspect` (read-only; no Jira needed). Start with `view: "overview"`, then `requirements`, `stories`, `decisions`, `work`, `handoffs`, `open-items` or `quality`, or `all`. Pass `workItemId` when several Work Items exist, and `id` for one record. Report what it returns, including Story confirmation state: an unconfirmed Story stays unconfirmed. Do not ask the user to open files for anything Runtime can return.
+When the user asks what exists ("show requirements, Stories, architecture decisions, current work and Quality results"), call `praxis_workflow_inspect` (read-only; no Jira needed). Start with `view: "overview"`, then `requirements`, `stories`, `decisions`, `work`, `handoffs`, `open-items`, `quality` (per-criterion counts), `approvals` (who decided what, through which channel, and what that proves) or `all`. Pass `workItemId` when several Work Items exist, and `id` for one record. Report what it returns, including Story confirmation state: an unconfirmed Story stays unconfirmed. Do not ask the user to open files for anything Runtime can return.
 
 ## Verifying across repositories, and returning work
 
