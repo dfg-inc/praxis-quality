@@ -1,6 +1,6 @@
 # Third-party notices
 
-Praxis is licensed under the Apache License, Version 2.0 (see LICENSE and NOTICE). This Praxis plugin build output bundles the third-party packages below, which keep their own licences. Their copyright and licence texts follow unchanged.
+Praxis is licensed under the Apache License, Version 2.0 (see LICENSE and NOTICE). This Praxis plugin build output bundles the third-party packages (and, for BA, the adapted text) listed below, which keep their own licences. Their copyright and licence texts follow unchanged.
 
 ---
 
